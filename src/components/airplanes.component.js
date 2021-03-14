@@ -102,7 +102,7 @@ class Airplanes extends Component {
                         </Entity>
                         <Entity position={new Cartesian3.fromDegrees(airplane.Longitude, airplane.Latitude, 8000)}>
                             <BillboardGraphics scale={0.4} image={require("../images/airplane.png")}
-                                pixelOffset={new Cartesian2(0, 20)}>
+                                pixelOffset={new Cartesian2(0, 20)} rotation={airplane.Rotation}>
                             </BillboardGraphics>
                         </Entity>
                     </div>
