@@ -29,4 +29,4 @@ npm start
 
    [resium]: <https://resium.darwineducation.com/installation>
   
-![alt text](https://github.com/TolgaDatlica/reactresiumredux/blob/[branch]/image.jpg?raw=true)
+![alt text](https://github.com/TolgaDatlica/reactresiumredux/blob/main/src/images/airplane.png?raw=true)
