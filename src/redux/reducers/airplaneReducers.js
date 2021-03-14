@@ -19,9 +19,7 @@ const airplanereducers = (state = initialState.airplaneData, action) => {
                 ...state
             }
         case actionTypes.REMOVE_AIRPLANE_COMPLETE:
-            debugger;
             const deleteAirplane = [...state.airplanes.filter(airplane => airplane.Id !== action.payload)]
-            debugger;
             return {
                 ...state,
                 airplanes: deleteAirplane

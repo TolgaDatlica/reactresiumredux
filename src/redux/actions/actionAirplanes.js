@@ -16,7 +16,6 @@ const getAllAirplaneComplete = (data) => {return { type: actionTypes.GET_ALL_AIR
 
 const NewAirplane  = (airplaneData) => {
     return (dispatch) => {
-        // debugger;
         uniqueId ++;
         dispatch(addNewAirplanePending());
         
@@ -53,7 +52,6 @@ const deleteAirplaneComplete = (data) => {return { type: actionTypes.REMOVE_AIRP
 
 
 const getAirplanePositionRequest = (data) => {
-    //debugger;
     data.forEach(element => {
         if(element.Route === RouteTypes.LONDON_NEWYORK){
             element.Longitude += ((-75.000000 - element.Longitude) / 1000);
@@ -71,6 +69,8 @@ const getAirplanePositionRequest = (data) => {
             element.Rotation = Math.atan2((-0.136439 - element.Longitude), (51.507359 - element.Latitude)) 
             element.Rotation = element.Rotation * -1;
         }
+        element.History.push(element.Longitude);
+        element.History.push(element.Latitude);
     });
     return (dispatch)=>{
         dispatch(getAirplanePositionResponse(data));

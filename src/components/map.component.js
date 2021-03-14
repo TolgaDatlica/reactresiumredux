@@ -10,7 +10,7 @@ class Map extends Component {
         super(props);
     }
     cameraChanged = (e) => {
-        console.log(e)
+        //console.log(e)
     }
     render() {
         return (

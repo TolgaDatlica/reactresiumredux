@@ -2,8 +2,8 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as airplaneActions from '../redux/actions/actionAirplanes';
-import { Cartesian3, Cartesian2 } from "cesium";
-import {Entity, LabelGraphics, BillboardGraphics} from "resium";
+import { Cartesian3, Cartesian2, Color } from "cesium";
+import { Entity, LabelGraphics, BillboardGraphics, PolylineGraphics } from "resium";
 import { Button, Form, FormGroup, Label, Input, Table } from 'reactstrap'
 class Airplanes extends Component {
     constructor(props) {
@@ -26,12 +26,12 @@ class Airplanes extends Component {
     deleteAirplane = (id) => {
         this.props.action.DeleteAirplane(id);
     }
-    
+
     myChangeHandler = (event) => {
         let nam = event.target.name;
         let val = event.target.value;
-        this.setState({[nam]: val});
-      }
+        this.setState({ [nam]: val });
+    }
     newAirplane = () => {
         const data = {
             Name: this.state.AirplaneName,
@@ -42,20 +42,20 @@ class Airplanes extends Component {
     render() {
         return (
             <div >
-                <div className="container" style={{ position: 'absolute', top: "10px", maxWidth:"500px" }}>
+                <div className="container" style={{ position: 'absolute', top: "10px", maxWidth: "500px" }}>
                     <div className="row justify-content-start">
                         <div className="col-md-12 align-self-start">
                             <Form>
                                 <FormGroup>
                                     <Label for="AirplaneName" style={{ color: "white" }}>Airplane Name</Label>
-                                    <Input type="text" name="AirplaneName" id="airplaneName" placeholder="Please type a name" 
-                                    
-                                    value={this.state.AirplaneName } onChange={this.myChangeHandler} />
+                                    <Input type="text" name="AirplaneName" id="airplaneName" placeholder="Please type a name"
+
+                                        value={this.state.AirplaneName} onChange={this.myChangeHandler} />
                                 </FormGroup>
                                 <FormGroup>
                                     <Label for="Route" style={{ color: "white" }}>Route</Label>
                                     <Input type="select" name="Route" id="routeTypes" value={this.state.Route}
-                                    onChange={this.myChangeHandler}>
+                                        onChange={this.myChangeHandler}>
                                         <option>ISTANBUL_LONDON</option>
                                         <option>LONDON_NEWYORK</option>
                                         <option>NEWYORK_ISTANBUL</option>
@@ -65,10 +65,10 @@ class Airplanes extends Component {
                             </Form>
                         </div>
                     </div>
-                   <br></br>
+                    <br></br>
                     <div className="row justify-content-start">
                         <div className="col-md-12 align-self-start">
-                            <Table style={{color:"white"}}>
+                            <Table style={{ color: "white" }}>
                                 <thead>
                                     <tr>
                                         <th>Name</th>
@@ -104,6 +104,17 @@ class Airplanes extends Component {
                             <BillboardGraphics scale={0.4} image={require("../images/airplane.png")}
                                 pixelOffset={new Cartesian2(0, 20)} rotation={airplane.Rotation}>
                             </BillboardGraphics>
+                        </Entity>
+                        <Entity name="PolygonGraphics" description="PolygonGraphics!!">
+                            <PolylineGraphics
+                                positions={new Cartesian3.fromDegreesArray(
+                                    airplane.History
+                                    )}
+                                material={Color.LIGHTBLUE}
+                                width={3}
+                                zIndex= {-1}
+                                
+                            />
                         </Entity>
                     </div>
 
